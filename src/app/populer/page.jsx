@@ -7,8 +7,7 @@ const getPopulerAnime = async () => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = await populer.json();
-  return json;
+  return populer.json();
 };
 
 export default async function Populer() {

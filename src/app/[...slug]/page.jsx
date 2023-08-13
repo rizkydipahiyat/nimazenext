@@ -7,8 +7,7 @@ const getStreamAnime = async (slug) => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = await watch.json();
-  return json;
+  return watch.json();
 };
 
 export default async function Watch({ params }) {
