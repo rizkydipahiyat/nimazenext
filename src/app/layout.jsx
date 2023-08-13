@@ -4,12 +4,11 @@ import { Inter } from "next/font/google";
 import Menus from "@/lib/Menus";
 import Navbar from "@/components/navbar/page";
 import NextTopLoader from "nextjs-toploader";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL(getBaseUrl()),
+  metadataBase: new URL(`${process.env.BASE_URL}`),
   title: {
     default: "Nimaze",
     template: "Nimaze",

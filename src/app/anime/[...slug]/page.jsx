@@ -1,10 +1,9 @@
 import DetailAnimeCard from "@/components/detailAnimeCard/page";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import Link from "next/link";
 import React from "react";
 
 const getDetailAnime = async (slug) => {
-  const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
+  const detail = await fetch(`${process.env.BASE_URL}/api/anime/${slug}`, {
     headers: { "content-type": "application/json" },
     cache: "no-store",
     next: { revalidate: 60 },
