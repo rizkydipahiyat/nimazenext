@@ -27,6 +27,7 @@ export default async function Populer() {
               image={anime.image}
               genres={anime.genres}
               rank={anime.rank}
+              key={index + 369}
             />
           );
         })}
