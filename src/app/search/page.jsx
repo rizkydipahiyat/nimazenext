@@ -7,7 +7,7 @@ const getSearch = async (query) => {
     `${process.env.NEXTAUTH_URL}/api/search?query=${query}`,
     {
       headers: { "content-type": "application/json" },
-      cache: "no-store",
+      next: { revalidate: 60 },
     }
   );
   const json = await res.json();

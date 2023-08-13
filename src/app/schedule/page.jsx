@@ -4,7 +4,7 @@ import React from "react";
 const getSchedules = async () => {
   const schedule = await fetch(`${process.env.NEXTAUTH_URL}/api/schedules`, {
     headers: { "content-type": "application/json" },
-    cache: "no-store",
+    next: { revalidate: 60 },
   });
   const json = schedule.json();
   return json;
@@ -17,7 +17,11 @@ const Schedule = async () => {
       <div className="flex items-center justify-center">
         <h2 className="font-bold text-2xl">Jadwal Rilis</h2>
       </div>
-      <ScheduleTabs data={getSchedule.data} />
+      {getSchedule.data.length > 0 ? (
+        <ScheduleTabs data={getSchedule.data} />
+      ) : (
+        <h3>No schedule are currently in here</h3>
+      )}
     </div>
   );
 };
