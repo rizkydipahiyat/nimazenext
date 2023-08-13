@@ -7,20 +7,26 @@ import React, { useEffect, useState } from "react";
 export default function Watch({ params }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const slug = params.slug[0];
+  const slug = params?.slug[0] || "";
 
   useEffect(() => {
     const getStreamAnime = async () => {
       setLoading(true);
-      const watch = await fetch(`${getBaseUrl()}/api/${slug}`, {
-        headers: { "content-type": "application/json" },
-        next: { revalidate: 60 },
-      });
-      const result = await watch.json();
-      setData(result.data[0]);
+      try {
+        const watch = await fetch(`${getBaseUrl()}/api/${slug}`, {
+          headers: { "content-type": "application/json" },
+          next: { revalidate: 60 },
+        });
+        const result = await watch.json();
+        setData(result.data[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
       setLoading(false);
     };
-    getStreamAnime(slug);
+    if (slug) {
+      getStreamAnime(slug);
+    }
   }, [slug]);
 
   return (
