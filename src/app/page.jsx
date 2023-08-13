@@ -9,7 +9,8 @@ const getTopAnime = async () => {
     },
     next: { revalidate: 60 },
   });
-  return latest.json();
+  const json = latest.json();
+  return json;
 };
 
 export default async function Home() {

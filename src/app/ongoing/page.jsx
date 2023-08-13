@@ -7,7 +7,8 @@ const getOngoingAnime = async () => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  return ongoing.json();
+  const json = ongoing.json();
+  return json;
 };
 const Ongoing = async () => {
   const result = await getOngoingAnime();

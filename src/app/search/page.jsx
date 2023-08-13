@@ -8,7 +8,8 @@ const getSearch = async (query) => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  return res.json();
+  const json = res.json();
+  return json;
 };
 
 export default async function Search({ searchParams }) {

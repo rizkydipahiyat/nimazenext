@@ -9,7 +9,8 @@ const getDetailAnime = async (slug) => {
     next: { revalidate: 60 },
   });
 
-  return detail.json();
+  const json = detail.json();
+  return json;
 };
 export default async function Detail({ params }) {
   const slug = params.slug[0];
