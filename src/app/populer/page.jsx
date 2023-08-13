@@ -5,7 +5,6 @@ import React from "react";
 const getPopulerAnime = async () => {
   const populer = await fetch(`${getBaseUrl()}/api/populer`, {
     headers: { "content-type": "application/json" },
-    cache: "no-store",
     next: { revalidate: 60 },
   });
   const json = await populer.json();
