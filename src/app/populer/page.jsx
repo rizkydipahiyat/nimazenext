@@ -2,7 +2,7 @@ import PopulerCard from "@/components/populerCard/PopulerCard";
 import React from "react";
 
 const getPopulerAnime = async () => {
-  const populer = await fetch(`${process.env.NEXTAUTH_URL}/api/populer`, {
+  const populer = await fetch(`http://localhost:3000/api/populer`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });

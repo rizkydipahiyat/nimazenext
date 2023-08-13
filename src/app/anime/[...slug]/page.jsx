@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const getDetailAnime = async (slug) => {
-  const detail = await fetch(`${process.env.NEXTAUTH_URL}/api/anime/${slug}`, {
+  const detail = await fetch(`http://localhost:3000/api/anime/${slug}`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });

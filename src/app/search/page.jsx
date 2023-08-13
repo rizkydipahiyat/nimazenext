@@ -3,13 +3,10 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 
 const getSearch = async (query) => {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/search?query=${query}`,
-    {
-      headers: { "content-type": "application/json" },
-      next: { revalidate: 60 },
-    }
-  );
+  const res = await fetch(`http://localhost:3000/api/search?query=${query}`, {
+    headers: { "content-type": "application/json" },
+    next: { revalidate: 60 },
+  });
   const json = await res.json();
   return json;
 };

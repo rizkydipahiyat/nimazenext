@@ -2,7 +2,7 @@ import WatchCard from "@/components/watchCard/page";
 import React from "react";
 
 const getStreamAnime = async (slug) => {
-  const watch = await fetch(`${process.env.NEXTAUTH_URL}/api/${slug}`, {
+  const watch = await fetch(`http://localhost:3000/api/${slug}`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
