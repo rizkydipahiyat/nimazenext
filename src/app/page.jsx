@@ -6,7 +6,7 @@ const getTopAnime = async () => {
     headers: {
       "content-type": "application/json",
     },
-    next: { revalidate: 60 * 60 },
+    cache: "no-store",
   });
   const json = await latest.json();
   return json;
