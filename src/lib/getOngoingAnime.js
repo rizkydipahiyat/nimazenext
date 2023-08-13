@@ -1,10 +1,10 @@
+import axios from "axios";
 import { getBaseUrl } from "./getBaseUrl";
 
 export const getOngoingAnime = async () => {
-  const ongoing = await fetch(`${getBaseUrl()}/api/ongoing`, {
+  const ongoing = await axios.get(`${getBaseUrl()}/api/ongoing`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = ongoing.json();
-  return json;
+  return ongoing.data;
 };

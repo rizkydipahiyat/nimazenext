@@ -1,14 +1,14 @@
 import ScheduleTabs from "@/components/scheduleTabs/page";
 import { getBaseUrl } from "@/lib/getBaseUrl";
+import axios from "axios";
 import React from "react";
 
 const getSchedules = async () => {
-  const schedule = await fetch(`${getBaseUrl()}/api/schedules`, {
+  const schedule = await axios.get(`${getBaseUrl()}/api/schedules`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = schedule.json();
-  return json;
+  return schedule.data;
 };
 const Schedule = async () => {
   const getSchedule = await getSchedules();

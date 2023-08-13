@@ -1,10 +1,11 @@
+import axios from "axios";
+
 const { getBaseUrl } = require("./getBaseUrl");
 
 export const getPopulerAnime = async () => {
-  const populer = await fetch(`${getBaseUrl()}/api/populer`, {
+  const populer = await axios.get(`${getBaseUrl()}/api/populer`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = populer.json();
-  return json;
+  return populer.data;
 };
