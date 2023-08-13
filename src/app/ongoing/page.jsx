@@ -2,7 +2,7 @@ import OngoingCard from "@/components/ongoingCard/OngoingCard";
 import React from "react";
 
 const getOngoingAnime = async () => {
-  const ongoing = await fetch(`http://localhost:3000/api/ongoing`, {
+  const ongoing = await fetch(`/api/ongoing`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });

@@ -2,7 +2,7 @@ import ScheduleTabs from "@/components/scheduleTabs/page";
 import React from "react";
 
 const getSchedules = async () => {
-  const schedule = await fetch(`http://localhost:3000/api/schedules`, {
+  const schedule = await fetch(`/api/schedules`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
