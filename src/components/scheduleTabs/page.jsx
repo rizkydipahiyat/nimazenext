@@ -68,9 +68,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
-                          <span className="font-thin ml-2 text-[8px] lg:text-xs">
+                          <span
+                            key={item}
+                            className="font-thin ml-2 text-[8px] lg:text-xs">
                             {genre}
                           </span>
                         );
@@ -109,9 +111,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
-                          <span className="font-thin ml-2 text-[8px] lg:text-xs">
+                          <span
+                            key={item}
+                            className="font-thin ml-2 text-[8px] lg:text-xs">
                             {genre}
                           </span>
                         );
@@ -150,11 +154,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre, index) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
                           <span
                             className="font-thin ml-2 text-[8px] lg:text-xs"
-                            key={index}>
+                            key={item}>
                             {genre}
                           </span>
                         );
@@ -193,9 +197,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
-                          <span className="font-thin ml-2 text-[8px] lg:text-xs">
+                          <span
+                            key={item}
+                            className="font-thin ml-2 text-[8px] lg:text-xs">
                             {genre}
                           </span>
                         );
@@ -234,9 +240,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
-                          <span className="font-thin ml-2 text-[8px] lg:text-xs">
+                          <span
+                            key={item}
+                            className="font-thin ml-2 text-[8px] lg:text-xs">
                             {genre}
                           </span>
                         );
@@ -275,9 +283,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
-                          <span className="font-thin ml-2 text-[8px] lg:text-xs">
+                          <span
+                            key={item}
+                            className="font-thin ml-2 text-[8px] lg:text-xs">
                             {genre}
                           </span>
                         );
@@ -316,11 +326,11 @@ const ScheduleTabs = ({ data }) => {
                       {anime.title}
                     </span>
                     <div className="genre absolute bottom-3">
-                      {anime.genres.slice(0, 3).map((genre, index) => {
+                      {anime.genres.slice(0, 3).map((genre, item) => {
                         return (
                           <Fragment
                             className="font-thin ml-2 text-[8px] lg:text-xs"
-                            key={index + 1}>
+                            key={item + 1}>
                             {genre}
                           </Fragment>
                         );
