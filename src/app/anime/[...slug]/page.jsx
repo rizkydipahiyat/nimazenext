@@ -11,7 +11,7 @@ export default function Detail({ params }) {
   const slug = params.slug[0];
 
   useEffect(() => {
-    const getDetailAnime = async (slug) => {
+    const getDetailAnime = async () => {
       setLoading(true);
       const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
         headers: { "content-type": "application/json" },
