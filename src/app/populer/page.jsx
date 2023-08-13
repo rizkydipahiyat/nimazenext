@@ -1,15 +1,6 @@
 import PopulerCard from "@/components/populerCard/PopulerCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
+import { getPopulerAnime } from "@/lib/getPopulerAnime";
 import React from "react";
-
-const getPopulerAnime = async () => {
-  const populer = await fetch(`${getBaseUrl()}/api/populer`, {
-    headers: { "content-type": "application/json" },
-    next: { revalidate: 60 },
-  });
-  const json = populer.json();
-  return json;
-};
 
 export default async function Populer() {
   const { data } = await getPopulerAnime();
