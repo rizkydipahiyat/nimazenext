@@ -7,7 +7,7 @@ const getSchedules = async () => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = schedule.json();
+  const json = await schedule.json();
   return json;
 };
 const Schedule = async () => {

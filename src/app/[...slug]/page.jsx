@@ -7,7 +7,7 @@ const getStreamAnime = async (slug) => {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });
-  const json = watch.json();
+  const json = await watch.json();
   return json;
 };
 
