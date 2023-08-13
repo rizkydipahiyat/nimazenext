@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ["i0.wp.com"],
   },
   env: {
-    BASE_URL: "http://localhost:3000",
+    NEXTAUTH_URL: "http://localhost:3000",
   },
 };
 
