@@ -5,7 +5,7 @@ import React from "react";
 const getDetailAnime = async (slug) => {
   const detail = await fetch(`${process.env.BASE_URL}/api/anime/${slug}`, {
     headers: { "content-type": "application/json" },
-    next: { revalidate: 60 * 60 },
+    cache: "no-store",
   });
 
   const json = await detail.json();

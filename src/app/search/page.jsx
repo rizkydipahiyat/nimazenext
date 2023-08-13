@@ -6,7 +6,6 @@ const getSearch = async (query) => {
   const res = await fetch(`${process.env.BASE_URL}/api/search?query=${query}`, {
     headers: { "content-type": "application/json" },
     cache: "no-store",
-    next: { revalidate: 60 },
   });
   const json = await res.json();
   return json;
