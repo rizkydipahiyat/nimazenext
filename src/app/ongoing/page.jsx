@@ -1,8 +1,9 @@
 import OngoingCard from "@/components/ongoingCard/OngoingCard";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 import React from "react";
 
 const getOngoingAnime = async () => {
-  const ongoing = await fetch(`/api/ongoing`, {
+  const ongoing = await fetch(`${getBaseUrl()}/api/ongoing`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });

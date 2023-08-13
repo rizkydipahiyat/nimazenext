@@ -1,8 +1,9 @@
 import WatchCard from "@/components/watchCard/page";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 import React from "react";
 
 const getStreamAnime = async (slug) => {
-  const watch = await fetch(`/api/${slug}`, {
+  const watch = await fetch(`${getBaseUrl()}/api/${slug}`, {
     headers: { "content-type": "application/json" },
     next: { revalidate: 60 },
   });

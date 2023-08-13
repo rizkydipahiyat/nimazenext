@@ -1,8 +1,9 @@
 import CarouselCard from "@/components/carouselCard/CarouselCard";
 import LatestCard from "@/components/latestCard/LatestCard";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 const getTopAnime = async () => {
-  const latest = await fetch(`/api/latest`, {
+  const latest = await fetch(`${getBaseUrl()}/api/latest`, {
     headers: {
       "content-type": "application/json",
     },
