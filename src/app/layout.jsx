@@ -8,7 +8,7 @@ import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL(`${process.env.BASE_URL}`),
+  metadataBase: new URL(`${process.env.NEXTAUTH_URL}`),
   title: {
     default: "Nimaze",
     template: "Nimaze",

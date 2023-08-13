@@ -1,17 +1,15 @@
 import CarouselCard from "@/components/carouselCard/CarouselCard";
 import LatestCard from "@/components/latestCard/LatestCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 
-const getTopAnime = async () => {
-  const latest = await fetch(`${getBaseUrl()}/api/latest`, {
+async function getTopAnime() {
+  const latest = await fetch(`${process.env.NEXTAUTH_URL}/api/latest`, {
     headers: {
       "content-type": "application/json",
     },
     next: { revalidate: 60 },
   });
-  const json = latest.json();
-  return json;
-};
+  return latest.json();
+}
 
 export default async function Home() {
   const topAnimes = await getTopAnime();
