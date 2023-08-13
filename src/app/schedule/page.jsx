@@ -5,6 +5,7 @@ import React from "react";
 const getSchedules = async () => {
   const schedule = await fetch(`${getBaseUrl()}/api/schedules`, {
     headers: { "content-type": "application/json" },
+    cache: "no-store",
     next: { revalidate: 60 },
   });
   const json = schedule.json();

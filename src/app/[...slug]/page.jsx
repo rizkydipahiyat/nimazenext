@@ -5,6 +5,7 @@ import React from "react";
 const getStreamAnime = async (slug) => {
   const watch = await fetch(`${getBaseUrl()}/api/${slug}`, {
     headers: { "content-type": "application/json" },
+    cache: "no-store",
     next: { revalidate: 60 },
   });
   const json = watch.json();

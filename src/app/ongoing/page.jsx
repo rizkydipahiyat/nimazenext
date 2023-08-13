@@ -5,6 +5,7 @@ import React from "react";
 const getOngoingAnime = async () => {
   const ongoing = await fetch(`${getBaseUrl()}/api/ongoing`, {
     headers: { "content-type": "application/json" },
+    cache: "no-store",
     next: { revalidate: 60 },
   });
   const json = await ongoing.json();
