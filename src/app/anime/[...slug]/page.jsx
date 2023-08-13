@@ -1,6 +1,6 @@
 "use client";
 
-import DetailAnimeCard from "@/components/detailAnimeCard/page";
+import DetailAnimeCard from "@/components/detailAnimeCard/DetailAnimeCard";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

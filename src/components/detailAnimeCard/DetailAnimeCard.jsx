@@ -11,8 +11,8 @@ const DetailAnimeCard = ({ data }) => {
           width={0}
           height={0}
           sizes="100vh"
-          src={data.image}
-          alt={data.title}
+          src={data?.image}
+          alt={data.slug}
           className="w-[320px] h-[450px] p-4"
         />
       </div>
