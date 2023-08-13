@@ -41,7 +41,7 @@ const ScheduleTabs = ({ data }) => {
         </Tab.List>
         <Tab.Panels className="flex items-center justify-center">
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].senin.map((anime) => {
+            {data?.senin?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>
@@ -84,7 +84,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].selasa.map((anime) => {
+            {data?.selasa?.map((anime) => {
               return (
                 <div key={anime.animeId} className="relative">
                   <Link href={`${anime.slug}`}>
@@ -127,7 +127,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].rabu.map((anime) => {
+            {data?.rabu?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>
@@ -170,7 +170,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].kamis.map((anime) => {
+            {data?.kamis?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>
@@ -213,7 +213,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].jumat.map((anime) => {
+            {data?.jumat?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>
@@ -256,7 +256,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].sabtu.map((anime) => {
+            {data?.sabtu?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>
@@ -299,7 +299,7 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data[0].minggu.map((anime) => {
+            {data?.minggu?.map((anime) => {
               return (
                 <div className="relative" key={anime.animeId}>
                   <Link href={`${anime.slug}`}>

@@ -1,40 +1,51 @@
+"use client";
+
 import DetailAnimeCard from "@/components/detailAnimeCard/page";
 import { getBaseUrl } from "@/lib/getBaseUrl";
-import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const getDetailAnime = async (slug) => {
-  const detail = await axios.get(`${getBaseUrl()}/api/anime/${slug}`, {
-    headers: { "content-type": "application/json" },
-    next: { revalidate: 60 },
-  });
-
-  return detail.data;
-};
-export default async function Detail({ params }) {
+export default function Detail({ params }) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const slug = params.slug[0];
-  const { data } = await getDetailAnime(slug);
+
+  useEffect(() => {
+    const getDetailAnime = async (slug) => {
+      setLoading(true);
+      const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
+        headers: { "content-type": "application/json" },
+        next: { revalidate: 60 },
+      });
+      const result = await detail.json();
+      setData(result.data[0]);
+      setLoading(false);
+    };
+    getDetailAnime(slug);
+  }, [slug]);
+
   return (
-    <div className="container mx-auto text-slate-200 px-2">
-      <DetailAnimeCard data={data[0]} />
-      <div className="flex flex-col text-center  mt-5 mb-5">
-        {data.length > 0 ? (
-          data[0].listEpisode.map((list, index) => {
-            return (
-              <div
-                className="text-center m-2 p-2 bg-neutral-900 rounded-md"
-                key={index + 1}>
-                <Link href={`${list.slug}`}>
-                  <span>{list.title}</span>
-                </Link>
-              </div>
-            );
-          })
-        ) : (
-          <h3>No detail anime are currently in here</h3>
-        )}
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <span className="text-slate-200">Loading...</span>
+      ) : (
+        <div className="container mx-auto text-slate-200 px-2">
+          <DetailAnimeCard data={data} />
+          <div className="flex flex-col text-center  mt-5 mb-5">
+            {data.listEpisode.map((list, index) => {
+              return (
+                <div
+                  className="text-center m-2 p-2 bg-neutral-900 rounded-md"
+                  key={index + 1}>
+                  <Link href={`${list.slug}`}>
+                    <span>{list.title}</span>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

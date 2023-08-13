@@ -1,19 +1,28 @@
+"use client";
+
 import { getBaseUrl } from "@/lib/getBaseUrl";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
-const getSearch = async (query) => {
-  const res = await axios.get(`${getBaseUrl()}/api/search?query=${query}`, {
-    headers: { "content-type": "application/json" },
-    next: { revalidate: 60 },
-  });
-  return res.data;
-};
-
-export default async function Search({ searchParams }) {
+export default function Search({ searchParams }) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const { query } = searchParams;
+
+  useEffect(() => {
+    const getSearch = async (query) => {
+      setLoading(true);
+      const res = await fetch(`${getBaseUrl()}/api/search?query=${query}`, {
+        headers: { "content-type": "application/json" },
+        next: { revalidate: 60 },
+      });
+      const result = await res.json();
+      setData(result.data);
+      setLoading(false);
+    };
+    getSearch(query);
+  }, [query]);
 
   if (!query) {
     return (
@@ -22,52 +31,45 @@ export default async function Search({ searchParams }) {
       </div>
     );
   }
+
+  console.log(data);
   return (
-    <div className="flex items-center justify-center px-4 z-10 text-slate-100 mt-5">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-        <Suspense fallback={"Searching...."}>
-          <SearchResult query={query} />
-        </Suspense>
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <span className="text-slate-200">Loading...</span>
+      ) : (
+        <div className="flex items-center justify-center px-4 z-10 text-slate-100 mt-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            <Suspense fallback={"Searching...."}>
+              {data?.datas[0].listAnime?.map((anime, index) => {
+                return (
+                  <div className="relative" key={index}>
+                    <Link href={`${anime.slug}`}>
+                      <div className="eps absolute top-3 left-2">
+                        <span className="bg-neutral-700 text-sm text-slate-200 py-2 px-2 text-center rounded-md">
+                          {anime.type}
+                        </span>
+                      </div>
+                      <Image
+                        width={0}
+                        height={0}
+                        sizes="100vh"
+                        src={anime.image}
+                        alt={anime.title}
+                        className="w-[200px] h-[250px] rounded-md lg:w-[200px] lg:h-[280px]"
+                      />
+                      <div className="absolute bottom-0  h-2/4 w-full bg-gradient-to-t from-neutral-900 to-transparent"></div>
+                      <span className="title absolute bottom-3 font-semibold ml-2 text-xs">
+                        {anime.title}
+                      </span>
+                    </Link>
+                  </div>
+                );
+              })}
+            </Suspense>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
-
-const SearchResult = async ({ query }) => {
-  const result = await getSearch(query);
-  if (!result) {
-    return (
-      <div className="text-center w-full col-span-6">
-        <p>Hasil tidak ditemukan</p>
-      </div>
-    );
-  }
-
-  return result?.data?.datas[0]?.listAnime?.map((anime, index) => {
-    return (
-      <>
-        <div className="relative">
-          <Link href={`${anime.slug}`}>
-            <div className="eps absolute top-3 left-2">
-              <span className="bg-neutral-700 text-sm text-slate-200 py-2 px-2 text-center rounded-md">
-                {anime.type}
-              </span>
-            </div>
-            <Image
-              width={0}
-              height={0}
-              sizes="100vh"
-              src={anime.image}
-              alt={anime.title}
-              className="w-[200px] h-[250px] rounded-md lg:w-[200px] lg:h-[280px]"
-            />
-            <div className="absolute bottom-0  h-2/4 w-full bg-gradient-to-t from-neutral-900 to-transparent"></div>
-            <span className="title absolute bottom-3 font-semibold ml-2 text-xs">
-              {anime.title}
-            </span>
-          </Link>
-        </div>
-      </>
-    );
-  });
-};

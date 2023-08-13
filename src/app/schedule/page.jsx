@@ -1,29 +1,41 @@
+"use client";
+
 import ScheduleTabs from "@/components/scheduleTabs/page";
 import { getBaseUrl } from "@/lib/getBaseUrl";
-import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const getSchedules = async () => {
-  const schedule = await axios.get(`${getBaseUrl()}/api/schedules`, {
-    headers: { "content-type": "application/json" },
-    next: { revalidate: 60 },
-  });
-  return schedule.data;
-};
-const Schedule = async () => {
-  const getSchedule = await getSchedules();
+const Schedule = () => {
+  const [loading, setLoading] = useState(false);
+  const [getSchedule, setGetSchedule] = useState([]);
 
+  useEffect(() => {
+    const getSchedules = async () => {
+      setLoading(true);
+      const schedule = await fetch(`${getBaseUrl()}/api/schedules`, {
+        headers: { "content-type": "application/json" },
+        next: { revalidate: 60 },
+      });
+      const result = await schedule.json();
+      setGetSchedule(result.data[0]);
+      setLoading(false);
+    };
+    getSchedules();
+  }, []);
+
+  console.log(getSchedule);
   return (
-    <div className="container mx-auto text-slate-200">
-      <div className="flex items-center justify-center">
-        <h2 className="font-bold text-2xl">Jadwal Rilis</h2>
-      </div>
-      {getSchedule.data.length > 0 ? (
-        <ScheduleTabs data={getSchedule.data} />
+    <>
+      {loading ? (
+        <span className="text-slate-200">Loading...</span>
       ) : (
-        <h3>No schedule are currently in here</h3>
+        <div className="container mx-auto text-slate-200">
+          <div className="flex items-center justify-center">
+            <h2 className="font-bold text-2xl">Jadwal Rilis</h2>
+          </div>
+          <ScheduleTabs data={getSchedule} />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
