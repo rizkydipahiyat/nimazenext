@@ -19,7 +19,7 @@ const DetailAnimeCard = ({ data }) => {
       <div className="basis-1/2 mt-3">
         <div className="data-anime">
           <span className="title font-bold text-2xl">
-            {data.title.replace("English:", "")}
+            {data?.title?.replace("English:", "")}
           </span>
           <p className="text-justify mt-5">{data.synopsis}</p>
           <div className="box-detail flex flex-wrap mt-5">
@@ -32,10 +32,10 @@ const DetailAnimeCard = ({ data }) => {
                 <li>Status: {data.status}</li>
                 <li>Rating: {data.rating}</li>
                 <li>Season: {data.date}</li>
-                <li>Members: {data.members.replace("Members:", "")}</li>
+                <li>Members: {data?.members?.replace("Members:", "")}</li>
                 <li className="flex items-center gap-1">
                   Genres:
-                  {data.genres.map((genre, index) => {
+                  {data?.genres?.map((genre, index) => {
                     return (
                       <div key={index}>
                         <span>{genre}</span>
@@ -48,12 +48,12 @@ const DetailAnimeCard = ({ data }) => {
             <div className="lg:px-10 lg:py-7">
               <ul className="text-sm">
                 <li>
-                  Popularity: {data.popularity.replace("Popularity:", "")}
+                  Popularity: {data?.popularity?.replace("Popularity:", "")}
                 </li>
                 <li>Studio: {data.studio}</li>
                 <li>Duration: {data.duration}</li>
                 <li>Rating: {data.rating}</li>
-                <li>Aired: {data.aired.replace("Aired:", "")}</li>
+                <li>Aired: {data?.aired?.replace("Aired:", "")}</li>
               </ul>
             </div>
           </div>

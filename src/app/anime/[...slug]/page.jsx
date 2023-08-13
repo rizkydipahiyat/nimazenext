@@ -8,20 +8,26 @@ import React, { useEffect, useState } from "react";
 export default function Detail({ params }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const slug = params.slug[0];
+  const slug = params?.slug[0] || "";
 
   useEffect(() => {
     const getDetailAnime = async () => {
       setLoading(true);
-      const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
-        headers: { "content-type": "application/json" },
-        next: { revalidate: 60 },
-      });
-      const result = await detail.json();
-      setData(result.data[0]);
+      try {
+        const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
+          headers: { "content-type": "application/json" },
+          next: { revalidate: 60 },
+        });
+        const result = await detail.json();
+        setData(result.data[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
       setLoading(false);
     };
-    getDetailAnime(slug);
+    if (slug) {
+      getDetailAnime(slug);
+    }
   }, [slug]);
 
   return (
@@ -32,7 +38,7 @@ export default function Detail({ params }) {
         <div className="container mx-auto text-slate-200 px-2">
           <DetailAnimeCard data={data} />
           <div className="flex flex-col text-center  mt-5 mb-5">
-            {data.listEpisode.map((list, index) => {
+            {data?.listEpisode?.map((list, index) => {
               return (
                 <div
                   className="text-center m-2 p-2 bg-neutral-900 rounded-md"
