@@ -4,8 +4,7 @@ import React from "react";
 const getOngoingAnime = async () => {
   const ongoing = await fetch(`${process.env.BASE_URL}/api/ongoing`, {
     headers: { "content-type": "application/json" },
-    cache: "no-store",
-    next: { revalidate: 60 },
+    next: { revalidate: 60 * 60 },
   });
   const json = await ongoing.json();
   return json;
