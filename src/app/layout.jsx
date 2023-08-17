@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Sidebar Menus={Menus}>
-          <NextTopLoader color="#ffffff" showSpinner={false} />
+          <NextTopLoader color="#00a8ff" showSpinner={false} />
           <Navbar />
           {children}
         </Sidebar>

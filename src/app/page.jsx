@@ -40,7 +40,7 @@ export default function Home() {
                 Latest Episodes
               </h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 mt-3 gap-5 lg:gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-3 gap-5 md:gap-2">
               {topAnimes?.data?.map((anime) => {
                 return (
                   <LatestCard
