@@ -21,8 +21,8 @@ const LatestCard = ({ slug, eps, image, title }) => {
           alt={title}
           className="w-[200px] h-[250px] rounded-md lg:w-[220px] lg:h-[300px]"
         />
-        <div className="absolute bottom-0  h-2/4 w-full lg:w-[220px] bg-gradient-to-t from-neutral-900 to-transparent"></div>
-        <span className="title absolute bottom-3 lg:w-[220px] md:px-2 font-semibold px-2 text-xs">
+        <div className="absolute bottom-0  h-2/4 w-[200px] lg:w-[220px] bg-gradient-to-t from-neutral-900 to-transparent"></div>
+        <span className="title absolute bottom-3 w-[200px] lg:w-[220px] md:px-2 font-semibold px-2 text-xs">
           {title}
         </span>
       </Link>
