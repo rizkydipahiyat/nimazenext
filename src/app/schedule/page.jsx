@@ -22,7 +22,6 @@ const Schedule = () => {
     getSchedules();
   }, []);
 
-  console.log(getSchedule);
   return (
     <>
       {loading ? (

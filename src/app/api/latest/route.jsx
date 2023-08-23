@@ -25,10 +25,13 @@ export async function GET() {
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       popularSummer.push({
         image: updateImageUrl,
         title: $(e).find("a > div.top > h4").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         shortDesc: $(e).find("a > div.top > div.descs > p").text(),
         score: $(e)
           .find("a > div.top > div.boxinfores > span.nilaiseries")
@@ -46,9 +49,12 @@ export async function GET() {
       let imageUrl = $(e).find("div > a > div > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("div > a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       datas.push({
         title: $(e).find("div > a > div > h3 > span").text(),
-        slug: $(e).find("div > a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         eps: $(e).find("div > a > div > span").text().trim(),
         image: updateImageUrl,
       });

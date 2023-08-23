@@ -24,10 +24,13 @@ export async function GET() {
       let imageUrl = $(e).find("a > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       datas.push({
         rank: i + 1,
         title: $(e).find("a > div > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         genres: $(e)
           .find("a > div > div.viewer")

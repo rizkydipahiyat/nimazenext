@@ -1,5 +1,5 @@
 const siteConfig = {
-  scrapUrl: "https://nontonanimeid.lol",
+  scrapUrl: "https://nontonanimeid.top",
 };
 
 export default siteConfig;

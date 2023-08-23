@@ -26,12 +26,15 @@ export async function GET() {
         .attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("div.sera > a ").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       datas.push({
         image: updateImageUrl,
         title: $(e)
           .find("div.sera > a > div.limit > div.title.less > span")
           .text(),
-        slug: $(e).find("div.sera > a ").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         score: $(e)
           .find("div.sera > a > div.limit > span.kotakscore")
           .text()

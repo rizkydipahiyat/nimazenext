@@ -32,7 +32,6 @@ export default function Search({ searchParams }) {
     );
   }
 
-  console.log(data);
   return (
     <>
       {loading ? (

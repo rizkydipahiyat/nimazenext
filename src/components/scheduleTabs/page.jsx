@@ -84,9 +84,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.selasa?.map((anime) => {
+            {data?.selasa?.map((anime, index) => {
               return (
-                <div key={anime.animeId} className="relative">
+                <div key={index} className="relative">
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">
@@ -127,9 +127,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.rabu?.map((anime) => {
+            {data?.rabu?.map((anime, index) => {
               return (
-                <div className="relative" key={anime.animeId}>
+                <div className="relative" key={index}>
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">
@@ -170,9 +170,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.kamis?.map((anime) => {
+            {data?.kamis?.map((anime, index) => {
               return (
-                <div className="relative" key={anime.animeId}>
+                <div className="relative" key={index}>
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">
@@ -213,9 +213,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.jumat?.map((anime) => {
+            {data?.jumat?.map((anime, index) => {
               return (
-                <div className="relative" key={anime.animeId}>
+                <div className="relative" key={index}>
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">
@@ -256,9 +256,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.sabtu?.map((anime) => {
+            {data?.sabtu?.map((anime, index) => {
               return (
-                <div className="relative" key={anime.animeId}>
+                <div className="relative" key={index}>
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">
@@ -299,9 +299,9 @@ const ScheduleTabs = ({ data }) => {
             })}
           </Tab.Panel>
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
-            {data?.minggu?.map((anime) => {
+            {data?.minggu?.map((anime, index) => {
               return (
-                <div className="relative" key={anime.animeId}>
+                <div className="relative" key={index}>
                   <Link href={`${anime.slug}`}>
                     <div className="eps absolute top-3 left-2">
                       <span className="bg-neutral-700 text-[9px] lg:text-sm text-slate-200 py-2 px-2 text-center rounded-md">

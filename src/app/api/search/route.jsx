@@ -10,7 +10,6 @@ export async function GET(req) {
   const query = params.searchParams.get("query");
   // example for search => 'http://localhost:5000/search?query=bleach'
   try {
-    console.log(query);
     const rawResponse = await fetch(`${baseURL}/?s=${query || ""}`, {
       headers: {
         "User-Agent":
@@ -33,10 +32,13 @@ export async function GET(req) {
       let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       animesList.push({
         image: updateImageUrl,
         title: $(e).find("a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         shortDesc: $(e).find("a > div.top > div.descs").text().trim(),
         score: $(e).find("a > div.boxinfores > span.nilaiseries").text(),
         type: $(e).find("a > div.boxinfores > span.typeseries").text(),

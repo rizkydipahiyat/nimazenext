@@ -27,16 +27,17 @@ export async function GET() {
     let minggu = [];
 
     $("#tab-1 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day1 = "Senin";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       senin.push({
-        animeId: animeId,
         day: day1,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -51,16 +52,17 @@ export async function GET() {
     });
 
     $("#tab-2 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day2 = "Selasa";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       selasa.push({
-        animeid: animeId,
         day: day2,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -75,16 +77,17 @@ export async function GET() {
     });
 
     $("#tab-3 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day3 = "Rabu";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       rabu.push({
-        animeId: animeId,
         day: day3,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -99,16 +102,17 @@ export async function GET() {
     });
 
     $("#tab-4 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day4 = "Kamis";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       kamis.push({
-        animeId: animeId,
         day: day4,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -123,16 +127,17 @@ export async function GET() {
     });
 
     $("#tab-5 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day5 = "Jumat";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       jumat.push({
-        animeId: animeId,
         day: day5,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -147,16 +152,17 @@ export async function GET() {
     });
 
     $("#tab-6 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day6 = "Sabtu";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       sabtu.push({
-        animeId: animeId,
         day: day6,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
@@ -171,16 +177,17 @@ export async function GET() {
     });
 
     $("#tab-7 > div > ul > li").each((i, e) => {
-      let animeId = Math.floor(Math.random() * 1000000);
       let day7 = "Minggu";
       let imageUrl = $(e).find("a > div.top > img").attr("data-src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
+      const url = $(e).find("a").attr("href");
+      const urlObject = new URL(url);
+      const slug = urlObject.pathname.substring(1);
       minggu.push({
-        animeId: animeId,
         day: day7,
         title: $(e).find(" a > div.top > h2").text(),
-        slug: $(e).find("a").attr("href").replace(`${baseURL}`, ""),
+        slug: `/${slug}`,
         image: updateImageUrl,
         type: $(e).find(" a > div.boxinfores > span.typeseries").text(),
         score: $(e).find(" a > div.boxinfores > span.nilaiseries").text(),
