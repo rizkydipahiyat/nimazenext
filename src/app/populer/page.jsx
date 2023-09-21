@@ -1,7 +1,6 @@
 "use client";
 
 import PopulerCard from "@/components/populerCard/PopulerCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import React, { useEffect, useState } from "react";
 
 export default function Populer() {
@@ -11,7 +10,7 @@ export default function Populer() {
   useEffect(() => {
     const getPopulerAnime = async () => {
       setLoading(true);
-      const populer = await fetch(`${getBaseUrl()}/api/populer`, {
+      const populer = await fetch(`/api/populer`, {
         headers: { "content-type": "application/json" },
         next: { revalidate: 60 },
       });
@@ -25,7 +24,7 @@ export default function Populer() {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="container mx-auto px-2 text-slate-100">
           <div className="flex items-center justify-between">

@@ -1,7 +1,6 @@
 "use client";
 
 import DetailAnimeCard from "@/components/detailAnimeCard/DetailAnimeCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -14,10 +13,7 @@ export default function Detail({ params }) {
     const getDetailAnime = async () => {
       setLoading(true);
       try {
-        const detail = await fetch(`${getBaseUrl()}/api/anime/${slug}`, {
-          headers: { "content-type": "application/json" },
-          next: { revalidate: 60 },
-        });
+        const detail = await fetch(`/api/anime/${slug}`);
         const result = await detail.json();
         setData(result.data[0]);
       } catch (error) {
@@ -33,7 +29,7 @@ export default function Detail({ params }) {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="container mx-auto text-slate-200 px-2">
           <DetailAnimeCard data={data} />

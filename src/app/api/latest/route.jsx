@@ -8,21 +8,14 @@ export const runtime = "edge";
 
 export async function GET() {
   try {
-    const rawResponse = await fetch(`${baseURL}`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      next: { revalidate: 60 * 60 },
-    });
-    const html = await rawResponse.text();
+    const response = await fetch(`${baseURL}`);
+    const html = await response.text();
     const $ = cheerio.load(html);
-
-    const datas = [];
+    const data = [];
     const popularSummer = [];
 
-    $("#sidebar_right > div:nth-child(2) > div > ul > li").each((i, e) => {
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+    $("#sidebar_right > div:nth-child(6) > div > ul > li").each((i, e) => {
+      let imageUrl = $(e).find("a > div > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -30,12 +23,10 @@ export async function GET() {
       const slug = urlObject.pathname.substring(1);
       popularSummer.push({
         image: updateImageUrl,
-        title: $(e).find("a > div.top > h4").text(),
-        slug: `/${slug}`,
-        shortDesc: $(e).find("a > div.top > div.descs > p").text(),
-        score: $(e)
-          .find("a > div.top > div.boxinfores > span.nilaiseries")
-          .text(),
+        title: $(e).find("a > div > h4").text(),
+        slug: `${slug}`,
+        shortDesc: $(e).find("a > div > div.descs > p").text(),
+        score: $(e).find("a > div > div.boxinfores > span.nilaiseries").text(),
         genres: $(e)
           .find("span.genrebatas")
           .text()
@@ -46,25 +37,20 @@ export async function GET() {
     });
 
     $("#postbaru > div.misha_posts_wrap > article").each((i, e) => {
-      let imageUrl = $(e).find("div > a > div > img").attr("data-src");
-      let newHeight = 500;
-      const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
-      const url = $(e).find("div > a").attr("href");
+      const url = $(e).find("a").attr("href");
       const urlObject = new URL(url);
       const slug = urlObject.pathname.substring(1);
-      datas.push({
+      data.push({
         title: $(e).find("div > a > div > h3 > span").text(),
-        slug: `/${slug}`,
+        slug: `${slug}`,
         eps: $(e).find("div > a > div > span").text().trim(),
-        image: updateImageUrl,
+        image: $(e).find("div > a > div > img").attr("src"),
       });
     });
 
-    datas.pop();
-
     return NextResponse.json({
       statusMsg: "OK",
-      data: datas,
+      data,
       popularSummer,
     });
   } catch (error) {

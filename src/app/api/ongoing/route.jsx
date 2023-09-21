@@ -8,22 +8,14 @@ export const runtime = "edge";
 
 export async function GET() {
   try {
-    const rawResponse = await fetch(`${baseURL}/ongoing-list`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      next: { revalidate: 60 * 60 },
-    });
+    const rawResponse = await fetch(`${baseURL}/ongoing-list`);
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
 
     const datas = [];
 
     $("#wrap > main > div.contentpost > div.animeseries").each((i, e) => {
-      let imageUrl = $(e)
-        .find("div.sera > a > div.limit > img")
-        .attr("data-src");
+      let imageUrl = $(e).find("div.sera > a > div.limit > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("div.sera > a ").attr("href");
@@ -34,7 +26,7 @@ export async function GET() {
         title: $(e)
           .find("div.sera > a > div.limit > div.title.less > span")
           .text(),
-        slug: `/${slug}`,
+        slug: `${slug}`,
         score: $(e)
           .find("div.sera > a > div.limit > span.kotakscore")
           .text()

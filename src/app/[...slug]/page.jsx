@@ -1,7 +1,6 @@
 "use client";
 
 import WatchCard from "@/components/watchCard/page";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import React, { useEffect, useState } from "react";
 
 export default function Watch({ params }) {
@@ -13,10 +12,7 @@ export default function Watch({ params }) {
     const getStreamAnime = async () => {
       setLoading(true);
       try {
-        const watch = await fetch(`${getBaseUrl()}/api/${slug}`, {
-          headers: { "content-type": "application/json" },
-          next: { revalidate: 60 },
-        });
+        const watch = await fetch(`/api/${slug}`);
         const result = await watch.json();
         setData(result.data[0]);
       } catch (error) {
@@ -32,7 +28,7 @@ export default function Watch({ params }) {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="container mx-auto text-slate-200 mb-5">
           <WatchCard watch={data} />

@@ -1,7 +1,6 @@
 "use client";
 
 import ScheduleTabs from "@/components/scheduleTabs/page";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import React, { useEffect, useState } from "react";
 
 const Schedule = () => {
@@ -11,7 +10,7 @@ const Schedule = () => {
   useEffect(() => {
     const getSchedules = async () => {
       setLoading(true);
-      const schedule = await fetch(`${getBaseUrl()}/api/schedules`, {
+      const schedule = await fetch(`/api/schedules`, {
         headers: { "content-type": "application/json" },
         next: { revalidate: 60 },
       });
@@ -25,7 +24,7 @@ const Schedule = () => {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="container mx-auto text-slate-200">
           <div className="flex items-center justify-center">

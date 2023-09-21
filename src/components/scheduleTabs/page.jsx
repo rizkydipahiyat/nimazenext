@@ -298,6 +298,7 @@ const ScheduleTabs = ({ data }) => {
               );
             })}
           </Tab.Panel>
+
           <Tab.Panel className="grid grid-cols-2 lg:grid-cols-5 gap-5 py-10">
             {data?.minggu?.map((anime, index) => {
               return (

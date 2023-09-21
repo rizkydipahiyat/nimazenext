@@ -10,24 +10,13 @@ export async function GET(req) {
   const query = params.searchParams.get("query");
   // example for search => 'http://localhost:5000/search?query=bleach'
   try {
-    const rawResponse = await fetch(`${baseURL}/?s=${query || ""}`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      cache: "no-cache",
-    });
+    const rawResponse = await fetch(`${baseURL}/?s=${query || ""}`);
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
 
     const datas = [];
     const animesList = [];
 
-    if (!$("#wrap > main > div.result > ul > li").html()) {
-      throw new Error(
-        "Page not found, you may request more than the maximum page"
-      );
-    }
     $("#wrap > main > div.result > ul > li").each((i, e) => {
       let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;

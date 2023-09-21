@@ -10,13 +10,7 @@ export async function GET(slug) {
   const slugAnime = slug.url;
   const slugPart = slugAnime.split("/").pop();
   try {
-    const rawResponse = await fetch(`${baseURL}/anime/${slugPart || ""}`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      next: { revalidate: 60 * 60 },
-    });
+    const rawResponse = await fetch(`${baseURL}/anime/${slugPart || ""}`);
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
 
@@ -38,7 +32,7 @@ export async function GET(slug) {
     $("article").each((i, e) => {
       let imageUrl = $(e)
         .find("div.kotakseries > div.poster > img")
-        .attr("data-src");
+        .attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       datas.push({

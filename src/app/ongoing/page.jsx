@@ -1,6 +1,5 @@
 "use client";
 import OngoingCard from "@/components/ongoingCard/OngoingCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import React, { useEffect, useState } from "react";
 
 const Ongoing = () => {
@@ -10,7 +9,7 @@ const Ongoing = () => {
   useEffect(() => {
     const getOngoingAnime = async () => {
       setLoading(true);
-      const ongoing = await fetch(`${getBaseUrl()}/api/ongoing`, {
+      const ongoing = await fetch(`/api/ongoing`, {
         headers: { "content-type": "application/json" },
         next: { revalidate: 60 },
       });
@@ -24,7 +23,7 @@ const Ongoing = () => {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="container mx-auto px-2 text-slate-100">
           <div className="flex items-center justify-between">

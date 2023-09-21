@@ -2,7 +2,6 @@
 
 import CarouselCard from "@/components/carouselCard/CarouselCard";
 import LatestCard from "@/components/latestCard/LatestCard";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -12,18 +11,15 @@ export default function Home() {
   useEffect(() => {
     const getTopAnime = async () => {
       setLoading(true);
-      const res = await fetch(`${getBaseUrl()}/api/latest`, {
-        headers: {
-          "content-type": "application/json",
-        },
-        next: { revalidate: 60 },
-      });
+      const res = await fetch(`/api/latest`);
       const result = await res.json();
+      console.log("res", result);
       setTopAnimes(result);
       setLoading(false);
     };
     getTopAnime();
   }, []);
+  console.log("res", topAnimes);
 
   return (
     <>

@@ -1,6 +1,5 @@
 "use client";
 
-import { getBaseUrl } from "@/lib/getBaseUrl";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
@@ -13,7 +12,7 @@ export default function Search({ searchParams }) {
   useEffect(() => {
     const getSearch = async (query) => {
       setLoading(true);
-      const res = await fetch(`${getBaseUrl()}/api/search?query=${query}`, {
+      const res = await fetch(`/api/search?query=${query}`, {
         headers: { "content-type": "application/json" },
         next: { revalidate: 60 },
       });
@@ -35,7 +34,7 @@ export default function Search({ searchParams }) {
   return (
     <>
       {loading ? (
-        <span className="text-slate-200">Loading...</span>
+        <span className="px-3 text-slate-200">Loading...</span>
       ) : (
         <div className="flex items-center justify-center px-4 z-10 text-slate-100 mt-5">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">

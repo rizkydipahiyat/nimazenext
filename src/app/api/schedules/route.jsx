@@ -8,13 +8,7 @@ export const runtime = "edge";
 
 export async function GET() {
   try {
-    const rawResponse = await fetch(`${baseURL}/jadwal-rilis`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      next: { revalidate: 60 * 60 },
-    });
+    const rawResponse = await fetch(`${baseURL}/jadwal-rilis`);
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
     let datas = [];
@@ -28,7 +22,7 @@ export async function GET() {
 
     $("#tab-1 > div > ul > li").each((i, e) => {
       let day1 = "Senin";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -53,7 +47,7 @@ export async function GET() {
 
     $("#tab-2 > div > ul > li").each((i, e) => {
       let day2 = "Selasa";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -78,7 +72,7 @@ export async function GET() {
 
     $("#tab-3 > div > ul > li").each((i, e) => {
       let day3 = "Rabu";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -103,7 +97,7 @@ export async function GET() {
 
     $("#tab-4 > div > ul > li").each((i, e) => {
       let day4 = "Kamis";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -128,7 +122,7 @@ export async function GET() {
 
     $("#tab-5 > div > ul > li").each((i, e) => {
       let day5 = "Jumat";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -153,7 +147,7 @@ export async function GET() {
 
     $("#tab-6 > div > ul > li").each((i, e) => {
       let day6 = "Sabtu";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");
@@ -178,7 +172,7 @@ export async function GET() {
 
     $("#tab-7 > div > ul > li").each((i, e) => {
       let day7 = "Minggu";
-      let imageUrl = $(e).find("a > div.top > img").attr("data-src");
+      let imageUrl = $(e).find("a > div.top > img").attr("src");
       let newHeight = 500;
       const updateImageUrl = imageUrl.replace(/h=\d+/, `h=${newHeight}`);
       const url = $(e).find("a").attr("href");

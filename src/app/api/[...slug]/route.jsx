@@ -10,13 +10,7 @@ export async function GET(slug) {
   const slugAnime = slug.url;
   const slugPart = slugAnime.split("/").pop();
   try {
-    const rawResponse = await fetch(`${baseURL}/${slugPart || ""}`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-      },
-      next: { revalidate: 60 * 60 },
-    });
+    const rawResponse = await fetch(`${baseURL}/${slugPart || ""}`);
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
 
@@ -26,13 +20,11 @@ export async function GET(slug) {
       let getId = $("#player-option-1").attr("data-post");
       datas.push({
         title: $(e).find("header > h1").text(),
-        embed: $(e)
-          .find("div.player_embed > iframe")
-          .attr("data-litespeed-src"),
+        embed: $(e).find("div.player_embed > iframe").attr("src"),
         synopsis: $(e).find(`div.animeinfomu-${getId} > p.sinoparea`).text(),
         image: $(e)
           .find(`div.animeinfomu-${getId} > div.imgbox > img`)
-          .attr("data-src"),
+          .attr("src"),
         genres: $(e)
           .find(`div.animeinfomu-${getId} > div.data > div.tagline > a`)
           .text()
