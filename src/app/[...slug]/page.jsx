@@ -14,7 +14,7 @@ export default function Watch({ params }) {
       try {
         const watch = await fetch(`/api/${slug}`);
         const result = await watch.json();
-        setData(result.data[0]);
+        setData(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

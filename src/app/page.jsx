@@ -13,13 +13,11 @@ export default function Home() {
       setLoading(true);
       const res = await fetch(`/api/latest`);
       const result = await res.json();
-      console.log("res", result);
       setTopAnimes(result);
       setLoading(false);
     };
     getTopAnime();
   }, []);
-  console.log("res", topAnimes);
 
   return (
     <>

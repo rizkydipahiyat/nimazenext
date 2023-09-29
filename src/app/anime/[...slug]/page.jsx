@@ -15,6 +15,7 @@ export default function Detail({ params }) {
       try {
         const detail = await fetch(`/api/anime/${slug}`);
         const result = await detail.json();
+        console.log(result);
         setData(result.data[0]);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -14,41 +14,47 @@ export async function GET(slug) {
     const html = await rawResponse.text();
     const $ = cheerio.load(html);
 
-    const datas = [];
+    const articleElement = $('article[id^="post-"]');
+    const postId = articleElement.attr("id");
 
-    $("article").each((i, e) => {
-      let getId = $("#player-option-1").attr("data-post");
-      datas.push({
-        title: $(e).find("header > h1").text(),
-        embed: $(e).find("div.player_embed > iframe").attr("src"),
-        synopsis: $(e).find(`div.animeinfomu-${getId} > p.sinoparea`).text(),
-        image: $(e)
-          .find(`div.animeinfomu-${getId} > div.imgbox > img`)
-          .attr("src"),
-        genres: $(e)
-          .find(`div.animeinfomu-${getId} > div.data > div.tagline > a`)
-          .text()
-          .split(/(?=[A-Z])/),
-        prev: $(e).find("div.naveps > div:nth-child(1) > a").attr("href")
-          ? $(e)
-              .find("div.naveps > div:nth-child(1) > a")
-              .attr("href")
-              .replace(`${baseURL}`, "")
-          : "#",
-        detail: $(e)
-          .find("div.naveps > div.nvs.nvsc > a")
-          .attr("href")
-          .replace(`${baseURL}`, ""),
-        next: $(e).find("div.naveps > div:nth-child(3) > a").attr("href")
-          ? $(e)
-              .find("div.naveps > div:nth-child(3) > a")
-              .attr("href")
-              .replace(`${baseURL}`, "")
-          : "#",
-      });
-    });
+    const data = {
+      title: articleElement.find("header > h1").text(),
+      embed: articleElement.find("div.player_embed > iframe").attr("data-src"),
+      synopsis: articleElement
+        .find(`div.animeinfomu-${postId} > p.sinoparea`)
+        .text(),
+      image: articleElement
+        .find(`div.animeinfomu-${postId} > div.imgbox > img`)
+        .attr("data-src"),
+      genres: articleElement
+        .find(`div.animeinfomu-${postId} > div.data > div.tagline`)
+        .text()
+        .split(/(?=[A-Z])/),
+      prev: articleElement
+        .find("div.naveps > div:nth-child(1) > a")
+        .attr("href")
+        ? articleElement
+            .find("div.naveps > div:nth-child(1) > a")
+            .attr("href")
+            .replace(`${baseURL}`, "")
+        : "#",
+      detail: articleElement.find("div.naveps > div.nvs.nvsc > a").attr("href")
+        ? articleElement
+            .find("div.naveps > div.nvs.nvsc > a")
+            .attr("href")
+            .replace(`${baseURL}`, "")
+        : "#",
+      next: articleElement
+        .find("div.naveps > div:nth-child(3) > a")
+        .attr("href")
+        ? articleElement
+            .find("div.naveps > div:nth-child(3) > a")
+            .attr("href")
+            .replace(`${baseURL}`, "")
+        : "#",
+    };
 
-    return NextResponse.json({ statusMsg: "OK", data: datas });
+    return NextResponse.json({ statusMsg: "OK", data: data });
   } catch (error) {
     return NextResponse.json({
       message: "Terjadi kesalahan saat mengambil data",
