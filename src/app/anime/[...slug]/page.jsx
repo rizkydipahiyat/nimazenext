@@ -36,11 +36,12 @@ export default function Detail({ params }) {
           <DetailAnimeCard data={data} />
           <div className="flex flex-col text-center  mt-5 mb-5">
             {data?.listEpisode?.map((list, index) => {
+              console.log(list);
               return (
                 <div
                   className="text-center m-2 p-2 bg-neutral-900 rounded-md"
                   key={index + 1}>
-                  <Link href={`${list.slug}`}>
+                  <Link href={`/${list.slug}`}>
                     <span>{list.title}</span>
                   </Link>
                 </div>
